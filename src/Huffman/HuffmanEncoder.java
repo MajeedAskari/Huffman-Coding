@@ -1,34 +1,43 @@
+package Huffman;
 import tools.*;
 
 public class HuffmanEncoder {
 	String s = "", code = "";;
 	HuffmanNode[] alphabetArray = new HuffmanNode[26];
 	SortedList list = new SortedList();
+	HuffmanNode root = null;
 
-	public HuffmanEncoder() {
+	public HuffmanEncoder(String s) {
+		this.s = s;
 		for (int i = 0; i < 26; i++) {
 			alphabetArray[i] = new HuffmanNode((char) (i + 97), 0, null, null);
 		}
 	}
 
-	public String encode(String s) {
-		this.s = s;
-		setFreq();
-		makeTree();
-		HuffmanNode root = list.pop();
-		traverse(root, "");
-		replaceCode();
+	public String encode() {
+
+		setFreq(); // determine freq of each char (node)
+		makeTree(); // makes the tree using huffman algorithm
+		root = list.pop();
+		traverse(root, ""); // set each characters code
+		replaceCode(); // replace the chars whith their codes
+		
+		// printing each characters code
 		for (int i = 0; i < 26; i++) {
 			if (alphabetArray[i].getFrequency() > 0)
 				System.out.println(alphabetArray[i].getChar() + " is " + alphabetArray[i].getCode());
 		}
-		StringbyRef tree = new StringbyRef();
-		writeTree(root, tree);
-		System.out.println(tree.s);
-
 		return code;
 	}
 
+	public String getTree() { // return tree in string form
+		if (root == null)
+			encode();
+		StringbyRef tree = new StringbyRef();
+		writeTree(root, tree);
+		return tree.s;
+	}
+// recursive code to put tree structure in a string efficiently
 	private void writeTree(HuffmanNode n, StringbyRef s) {
 		if (n.getChar() != ' ')
 			s.s = s.s + '0' + n.getChar();
