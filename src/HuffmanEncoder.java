@@ -1,4 +1,4 @@
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+import tools.*;
 
 public class HuffmanEncoder {
 	String s = "", code = "";;
@@ -42,22 +42,6 @@ public class HuffmanEncoder {
 		}
 	}
 
-	// private HuffmanNode readTree(String s) {
-	// HuffmanNode root = null;
-	// char nextBit = s.charAt(0);
-	// s = s.substring(1);
-	// if (nextBit == '0') {
-	// root = new HuffmanNode(s.charAt(0), -1, null, null);
-	// s = s.substring(1);
-	// } else {
-	// root = new HuffmanNode(' ', -1, null, null);
-	// root.setLeft(readTree(s));
-	// root.setRight(readTree(s));
-	// return root;
-	// }
-	//
-	// }
-
 	private String replaceCode() {
 		String code = "";
 		for (int i = 0; i < s.length(); i++) {
@@ -94,9 +78,5 @@ public class HuffmanEncoder {
 			traverse(n.getLeft(), s + '0');
 		if (n.getRight() != null)
 			traverse(n.getRight(), s + '1');
-	}
-
-	class StringbyRef {
-		String s = "";
 	}
 }

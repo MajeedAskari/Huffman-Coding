@@ -1,3 +1,4 @@
+package tools;
 
 public class HuffmanNode {
 	private char Char;
@@ -5,7 +6,7 @@ public class HuffmanNode {
 	private HuffmanNode left, right;
 	String code = "";
 
-	HuffmanNode(char ch, int frequency, HuffmanNode left, HuffmanNode right) {
+	public HuffmanNode(char ch, int frequency, HuffmanNode left, HuffmanNode right) {
 		this.Char = ch;
 		this.frequency = frequency;
 		this.left = left;
